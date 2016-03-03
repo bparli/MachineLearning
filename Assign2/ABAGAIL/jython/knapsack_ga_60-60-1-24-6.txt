@@ -1,3 +1,0 @@
-GA, average results , 4251.14160777
-GA, average feval calls , 24061.0
-GA, average time , 0.18180000782

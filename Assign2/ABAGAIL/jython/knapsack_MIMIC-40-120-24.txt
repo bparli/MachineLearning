@@ -1,3 +1,0 @@
-MIMIC, average results, 4113.43161666
-MIMIC, average feval calls , 120121.0
-MIMIC, average time , 7.70290000439

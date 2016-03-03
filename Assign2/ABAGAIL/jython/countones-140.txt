@@ -1,6 +1,0 @@
-RHC, average results , 140.0
-RHC, average feval calls , 5002.0
-RHC, average time , 0.0164000034332
-SA, average results , 140.0
-SA, average feval calls , 5002.0
-SA, average time , 0.0210999965668

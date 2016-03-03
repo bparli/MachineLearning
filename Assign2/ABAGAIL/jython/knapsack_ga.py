@@ -82,7 +82,8 @@ elif co_type == 3:
 else:
     cf = sf
 
-sys.stdout = open("knapsack_ga_%d-%d-%d-%d-%d.txt" % (N, ga_pop,co_type,ga_keep,ga_mut), "w")
+#sys.stdout = open("knapsack_ga_%d-%d-%d-%d-%d.txt" % (N, ga_pop,co_type,ga_keep,ga_mut), "w")
+sys.stdout = open("knapsack.csv", "a") 
 runs=10
 # Random number generator */
 random = Random()
@@ -134,10 +135,10 @@ for _ in range(runs):
     results.append(ef.value(ga.getOptimal()))
     calls.append(ef.getTotalCalls())
     ef.clearCount()
-print "GA, average results , " + str(sum(results)/float(runs))
-print "GA, average feval calls , " + str(sum(calls)/float(runs))
+print "GA, average results , " + str(sum(results)/float(runs)) + ", knapsack_ga_%d-%d-%d-%d-%d.txt" % (N, ga_pop,co_type,ga_keep,ga_mut)
+print "GA, average feval calls , " + str(sum(calls)/float(runs)) + ", knapsack_ga_%d-%d-%d-%d-%d.txt" % (N, ga_pop,co_type,ga_keep,ga_mut)
 t1 = time.time() - t0
-print "GA, average time , " + str(t1/float(runs))
+print "GA, average time , " + str(t1/float(runs)) + ", knapsack_ga_%d-%d-%d-%d-%d.txt" % (N, ga_pop,co_type,ga_keep,ga_mut)
 
 
 

@@ -14,7 +14,7 @@ seed= 0
 scoress <- rep(0.1, 10)
 weights=rep(1,60)
 for(e in 1:10){
-  tmp= nnet.sa(sa.train=wine.train, sa.class=wine.train$quality, sa.iter=15, sa.seed=seeds[e], sa.num_weights = 60, sa.d=30)
+  tmp= nnet.sa(sa.train=wine.train, sa.class=wine.train$quality, sa.iter=5, sa.seed=seeds[e], sa.num_weights = 60, sa.d=30, sa.temp=10000)
   scoress[e] = tmp$best.score
   if(tmp$best.score > best){
     best = tmp$best.score

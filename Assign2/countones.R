@@ -10,11 +10,11 @@ library(gridExtra) # use ?arrangeGrob, over ?grid.arrange
 
 takeLastWord <- function(x) {strapplyc(x, "(\\w+)\\s*$")}
 
-onemax <- read.csv(file.path("ABAGAIL", "jython", "logs", "countones.csv"), header=FALSE)
+onemax <- read.csv(file.path("ABAGAIL", "jython", "countones.csv"), header=FALSE)
 names(onemax) <- c("Algo_type", "Description", "Value", "File")
 onemax$Algorithm <- onemax$Algo_type
 # rename the levels for SA
-levels(onemax$Algorithm) <- c("GA", "MIMIC", "RHC", "SA", "SA", "SA", "SA", "SA")
+levels(onemax$Algorithm) <- c("GA", "MIMIC", "RHC", "SA")
 
 onemax$Description %<>% as.character
 onemax$Description %<>% takeLastWord %>% unlist
@@ -77,7 +77,7 @@ p2 <- ggplot(final_set[final_set$Description=="calls",], aes(x=Run, y=Value, gro
   xlab("Problem Size") +
   ggtitle("Number of Function Calls")
 
-ggsave("onemax_results.png", width=8, height=5)
+
 
 ggplot(final_set[final_set$Description=="time",], aes(x=Run, y=Value, group=Algorithm)) +
   geom_line(aes(colour=Algorithm))+
@@ -86,6 +86,5 @@ ggplot(final_set[final_set$Description=="time",], aes(x=Run, y=Value, group=Algo
   ggtitle("Count Ones Function - Time Taken") +
   theme_bw()
 
-ggsave("onemax_time.png", width=8, height=5)
 
 

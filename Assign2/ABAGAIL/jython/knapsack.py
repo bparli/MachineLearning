@@ -50,8 +50,8 @@ try:
 except:
     runs = 10
 
-sys.stdout = open("knapsack%d.txt" % NUM_ITEMS, "w")
-
+#sys.stdout = open("knapsack%d.txt" % NUM_ITEMS, "w")
+sys.stdout = open("knapsack.csv", "a")  
 """
 Commandline parameter(s):
     none
@@ -108,10 +108,10 @@ for _ in range(runs):
     results.append(ef.value(rhc.getOptimal()))
     calls.append(ef.getTotalCalls())    
     ef.clearCount()
-print "RHC, average results , " + str(sum(results)/float(runs))
-print "RHC, average feval calls , " + str(sum(calls)/float(runs))
+print "RHC, average results , " + str(sum(results)/float(runs)) + ", knapsack%d.txt" % NUM_ITEMS
+print "RHC, average feval calls , " + str(sum(calls)/float(runs)) + ", knapsack%d.txt" % NUM_ITEMS
 t1 = time.time() - t0
-print "RHC, average time , " + str(float(t1)/runs)
+print "RHC, average time , " + str(float(t1)/runs) + ", knapsack%d.txt" % NUM_ITEMS
 
 
 
@@ -119,79 +119,16 @@ t0 = time.time()
 calls = []
 results = []
 for _ in range(runs):
-    sa = SimulatedAnnealing(1E11, .95, hcp)
+    sa = SimulatedAnnealingFast(1e10, .95, hcp)
     fit = FixedIterationTrainer(sa, iters)
     fitness = fit.train()
     results.append(ef.value(sa.getOptimal()))
     calls.append(ef.getTotalCalls())
     ef.clearCount()    
-print "SA95, average results , " + str(sum(results)/float(runs))
-print "SA95, average feval calls , " + str(sum(calls)/float(runs))
+print "SA, average results , " + str(sum(results)/float(runs)) + ", knapsack%d.txt" % NUM_ITEMS
+print "SA, average feval calls , " + str(sum(calls)/float(runs)) + ", knapsack%d.txt" % NUM_ITEMS
 t1 = time.time() - t0
-print "SA95, average time , " + str(t1/float(runs))
-
-
-t0 = time.time()
-calls = []
-results = []
-for _ in range(runs):
-    sa = SimulatedAnnealing(1E11, .8, hcp)
-    fit = FixedIterationTrainer(sa, iters)
-    fitness = fit.train()
-    results.append(ef.value(sa.getOptimal()))
-    calls.append(ef.getTotalCalls())
-    ef.clearCount()    
-print "SA80, average results , " + str(sum(results)/float(runs))
-print "SA80, average feval calls , " + str(sum(calls)/float(runs))
-t1 = time.time() - t0
-print "SA80, average time , " + str(t1/float(runs))
-
-t0 = time.time()
-calls = []
-results = []
-for _ in range(runs):
-    sa = SimulatedAnnealing(1E11, .7, hcp)
-    fit = FixedIterationTrainer(sa, iters)
-    fitness = fit.train()
-    results.append(ef.value(sa.getOptimal()))
-    calls.append(ef.getTotalCalls())
-    ef.clearCount()    
-print "SA70, average results , " + str(sum(results)/float(runs))
-print "SA70, average feval calls , " + str(sum(calls)/float(runs))
-t1 = time.time() - t0
-print "SA70, average time , " + str(t1/float(runs))
-
-
-t0 = time.time()
-calls = []
-results = []
-for _ in range(runs):
-    sa = SimulatedAnnealingBoltzman(1E11, .95, hcp)
-    fit = FixedIterationTrainer(sa, iters)
-    fitness = fit.train()
-    results.append(ef.value(sa.getOptimal()))
-    calls.append(ef.getTotalCalls())
-    ef.clearCount()    
-print "SABOL, average results , " + str(sum(results)/float(runs))
-print "SABOL, average feval calls , " + str(sum(calls)/float(runs))
-t1 = time.time() - t0
-print "SABOL, average time , " + str(t1/float(runs))
-
-t0 = time.time()
-calls = []
-results = []
-for _ in range(runs):
-    sa = SimulatedAnnealingFast(1E11, .95, hcp)
-    fit = FixedIterationTrainer(sa, iters)
-    fitness = fit.train()
-    results.append(ef.value(sa.getOptimal()))
-    calls.append(ef.getTotalCalls())
-    ef.clearCount()    
-print "SAFAS, average results , " + str(sum(results)/float(runs))
-print "SAFAS, average feval calls , " + str(sum(calls)/float(runs))
-t1 = time.time() - t0
-print "SAFAS, average time , " + str(t1/float(runs))
-
+print "SA, average time , " + str(t1/float(runs)) + ", knapsack%d.txt" % NUM_ITEMS
 
 
 

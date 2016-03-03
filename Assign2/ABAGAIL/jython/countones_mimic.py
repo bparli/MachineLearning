@@ -52,8 +52,8 @@ except:
     tokeep = 10
 runs = 10
     
-sys.stdout = open("countones_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep), "w")
-
+#sys.stdout = open("countones_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep), "w")
+sys.stdout = open("countones.csv", "a")
 """
 Commandline parameter(s):
    N : number in the test vector
@@ -83,8 +83,7 @@ for _ in range(runs):
     results.append(ef.value(mimic.getOptimal()))
     calls.append(ef.getTotalCalls())
     ef.clearCount()
-print "MIMIC, average results, " + str(sum(results)/float(runs))
-print "MIMIC, average feval calls , " + str(sum(calls)/float(runs))
+print "MIMIC, average results, " + str(sum(results)/float(runs)) + ", countones_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)
+print "MIMIC, average feval calls , " + str(sum(calls)/float(runs)) + ", countones_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)
 t1 = time.time() - t0
-print "MIMIC, average time , " + str(t1/float(runs))
-
+print "MIMIC, average time , " + str(t1/float(runs)) + ", countones_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)

@@ -10,7 +10,7 @@ library(gridExtra) # use ?arrangeGrob, over ?grid.arrange
 
 takeLastWord <- function(x) {strapplyc(x, "(\\w+)\\s*$")}
 
-onemax <- read.csv(file.path("ABAGAIL", "jython", "logs", "fourpeaks.csv"), header=FALSE)
+onemax <- read.csv(file.path("ABAGAIL", "jython", "fourpeaks.csv"), header=FALSE)
 names(onemax) <- c("Algo_type", "Description", "Value", "File")
 onemax$Algorithm <- onemax$Algo_type
 # rename the levels for SA
@@ -75,7 +75,7 @@ final_set$Run <- final_set$problemsize
 ##################
 
 
-ggplot(final_set[final_set$Description=="results",], aes(x=Run, y=Value, group=Algorithm)) +
+p1 = ggplot(final_set[final_set$Description=="results",], aes(x=Run, y=Value, group=Algorithm)) +
   geom_line(aes(colour=Algorithm)) +
   scale_y_continuous() + 
   ggtitle("One Max Function - Max Value") +
@@ -87,9 +87,8 @@ p2 <- ggplot(final_set[final_set$Description=="calls",], aes(x=Run, y=Value, gro
   theme_bw() +
   ylab("Number of Function Calls") +
   xlab("Problem Size") +
-  ggtitle("Count Ones - Number of Function Calls")
+  ggtitle("Four Peaks - Number of Function Calls")
 
-ggsave("onemax_results.png", width=8, height=5)
 
 ggplot(final_set[final_set$Description=="time",], aes(x=Run, y=Value, group=Algorithm)) +
   geom_line(aes(colour=Algorithm))+
@@ -97,7 +96,5 @@ ggplot(final_set[final_set$Description=="time",], aes(x=Run, y=Value, group=Algo
   scale_y_continuous(trans=log2_trans()) + 
   ggtitle("Count Ones Function - Time Taken") +
   theme_bw()
-
-ggsave("onemax_time.png", width=8, height=5)
 
 

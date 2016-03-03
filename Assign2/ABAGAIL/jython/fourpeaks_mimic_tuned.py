@@ -56,8 +56,9 @@ except:
     tokeep = 10
 runs = 10
     
-sys.stdout = open("fourpeaks_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep), "w")
-   
+#sys.stdout = open("fourpeaks_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep), "w")
+sys.stdout = open("fourpeaks.csv", "a")  
+  
 #N=200
 T = N/5
 fill = [2] * N
@@ -85,8 +86,8 @@ for _ in range(runs):
     results.append(ef.value(mimic.getOptimal()))
     calls.append(ef.getTotalCalls())
     ef.clearCount()
-print "MIMIC, average results, " + str(sum(results)/float(runs))
-print "MIMIC, average feval calls , " + str(sum(calls)/float(runs))
+print "MIMIC, average results, " + str(sum(results)/float(runs)) + ", fourpeaks_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)
+print "MIMIC, average feval calls , " + str(sum(calls)/float(runs)) + ", fourpeaks_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)
 t1 = time.time() - t0
-print "MIMIC, average time , " + str(t1/float(runs))
+print "MIMIC, average time , " + str(t1/float(runs)) + ", fourpeaks_MIMIC-%d-%d-%d.txt" % (N, samples, tokeep)
 

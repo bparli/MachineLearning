@@ -9,7 +9,7 @@ library(gridExtra) # use ?arrangeGrob, over ?grid.arrange
 
 takeLastWord <- function(x) {strapplyc(x, "(\\w+)\\s*$")}
 
-onemax <- read.csv(file.path("ABAGAIL", "jython", "logs", "knapsack.csv"), header=FALSE)
+onemax <- read.csv(file.path("ABAGAIL", "jython", "knapsack.csv"), header=FALSE)
 names(onemax) <- c("Algo_type", "Description", "Value", "File")
 onemax$Algorithm <- onemax$Algo_type
 # rename the levels for SA

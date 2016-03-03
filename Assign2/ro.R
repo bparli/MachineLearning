@@ -117,7 +117,7 @@ nnet.rhc = function(rhc.d=0.01, rhc.min=-100, rhc.max=100, rhc.n=222, rhc.test, 
 ## sa.iter is the number of iterations that is passed to the SA function
 
 
-nnet.sa = function(sa.train, sa.class, sa.seed=1, sa.d=100, sa.num_weights=222, sa.iter=100, sa.time = 900) {
+nnet.sa = function(sa.train, sa.class, sa.seed=1, sa.d=100, sa.num_weights=222, sa.iter=100, sa.time = 900, sa.temp = 100) {
   t1 = proc.time()
   
   set.seed(sa.seed)
@@ -133,7 +133,7 @@ nnet.sa = function(sa.train, sa.class, sa.seed=1, sa.d=100, sa.num_weights=222, 
   best.fit = GenSA(par=NULL, fn=fit, lower=lower, upper=upper,
                     control=list(maxit=sa.iter, max.time=sa.time))
   sa.best.fit = nnet(quality~fixed.acidity+volatile.acidity+citric.acid+residual.sugar+chlorides+free.sulfur.dioxide+total.sulfur.dioxide+density+pH+sulphates+alcohol, 
-       data=sa.train, size=3, maxit=0, Wts=best.fit$par)
+       data=sa.train, size=3, maxit=0, Wts=best.fit$par, temperature=sa.temp)
   sa.best.score = (nrow(sa.train) - best.fit$value)/nrow(sa.train)
   sa.best.seed = sa.seed
   sa.run.time = proc.time() - t1

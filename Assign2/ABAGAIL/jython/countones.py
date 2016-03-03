@@ -49,7 +49,8 @@ try:
 except:
     runs = 20
 
-sys.stdout = open("countones-%d.txt" % N, "w")
+#sys.stdout = open("countones-%d.txt" % N, "w")
+sys.stdout = open("countones.csv", "a")
 
 """
 Commandline parameter(s):
@@ -83,25 +84,26 @@ for _ in range(runs):
     results.append(ef.value(rhc.getOptimal()))
     calls.append(ef.getTotalCalls())    
     ef.clearCount()
-print "RHC, average results , " + str(sum(results)/float(runs))
-print "RHC, average feval calls , " + str(sum(calls)/float(runs))
+print "RHC, average results , " + str(sum(results)/float(runs)) + ", countones-%d.txt" % N
+print "RHC, average feval calls , " + str(sum(calls)/float(runs)) + ", countones-%d.txt" % N
 t1 = time.time() - t0
-print "RHC, average time , " + str(float(t1)/runs)
+print "RHC, average time , " + str(float(t1)/runs) + ", countones-%d.txt" % N
+
 
 t0 = time.time()
 calls = []
 results = []
 for _ in range(runs):
-    sa = SimulatedAnnealing(100, .95, hcp)
+    sa = SimulatedAnnealing(1e10, .95, hcp)
     fit = FixedIterationTrainer(sa, iters)
     fitness = fit.train()
     results.append(ef.value(sa.getOptimal()))
     calls.append(ef.getTotalCalls())
     ef.clearCount()    
-print "SA, average results , " + str(sum(results)/float(runs))
-print "SA, average feval calls , " + str(sum(calls)/float(runs))
+print "SA, average results , " + str(sum(results)/float(runs)) + ", countones-%d.txt" % N
+print "SA, average feval calls , " + str(sum(calls)/float(runs)) + ", countones-%d.txt" % N
 t1 = time.time() - t0
-print "SA, average time , " + str(t1/float(runs))
+print "SA, average time , " + str(t1/float(runs)) + ", countones-%d.txt" % N
 
 
 

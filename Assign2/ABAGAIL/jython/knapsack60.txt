@@ -1,18 +1,18 @@
-RHC, average results , 5130.44460488
+RHC, average results , 4250.17357478
 RHC, average feval calls , 800002.0
-RHC, average time , 1.63599998951
-SA95, average results , 5269.99189748
+RHC, average time , 0.477400016785
+SA95, average results , 4394.53034838
 SA95, average feval calls , 800002.0
-SA95, average time , 5.33819999695
-SA80, average results , 5154.79520752
+SA95, average time , 2.98439998627
+SA80, average results , 4307.26412793
 SA80, average feval calls , 800002.0
-SA80, average time , 5.23619999886
-SA70, average results , 5208.50964728
+SA80, average time , 3.08129999638
+SA70, average results , 4282.97497399
 SA70, average feval calls , 800002.0
-SA70, average time , 4.35360000134
-SABOL, average results , 3436.7765357
+SA70, average time , 3.08289999962
+SABOL, average results , 2617.57231402
 SABOL, average feval calls , 800002.0
-SABOL, average time , 1.33399999142
-SAFAS, average results , 3374.89292901
+SABOL, average time , 0.657300019264
+SAFAS, average results , 4917.20256175
 SAFAS, average feval calls , 800002.0
-SAFAS, average time , 1.06540000439
+SAFAS, average time , 1.07319998741

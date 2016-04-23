@@ -25,7 +25,7 @@ Using the example forest problem generation function in the MDPToolbox package p
 
 We know Policy Iteration converges faster than Value Iteration under some conditions due to its more efficient nature.  Although individual Policy Iterations are more expensive than individual Value Iterations, there are much fewer of them since it is "only" solving a linear equation.  In the plot below this is clearly the case.  As the number of states in the problem grows to 1000, the Policy Iteration also grows at a slower rate than Value Iteration.
 
-```{r fig.width=3, fig.height=3,fig.show="hold", echo=FALSE, message=FALSE}
+```{r fig.width=5, fig.height=5,fig.show="hold", echo=FALSE, message=FALSE}
 library(png)
 library(grid)
 
@@ -36,7 +36,7 @@ grid.raster(img1)
 
 The comparison in number of iterations below also support this expected behavior and displays a much clearer difference from even the initial, low number of states.  The Policy Iterations algorithm maintains a steady number of iterations even as the number of states grow to 1000.  The Value Iterations algorithms quickly grows with the number of states but starts to flatten its slope around 100 states.  It still shows an upward trend at 1000 states.  I*ntuitively, this is expected since with more states it will take more iterations of the Value Iteration algorithm to propogate the Reward of each state ("truth") throughout.
 
-```{r fig.width=3, fig.height=3,fig.show="hold", echo=FALSE, message=FALSE}
+```{r fig.width=5, fig.height=5,fig.show="hold", echo=FALSE, message=FALSE}
 library(png)
 library(grid)
 
@@ -47,7 +47,7 @@ grid.raster(img1)
 
 The choices of the two algorithms can also be compared as the number of states are increased.  Since both algorithms are rooted in the Bellman equation it can be expected they will somewhat agree on otimal policy choices even though they are solving the problem differently (Policy Iteration as a linear equation but Value Iteration as a more iterative algorithm).  The graph below shows this to be the case, although the Value Iterations algorithm preferred choice 1 a little more often than the Policy Iteration algorithm.  As the number of states increased, the second choice became a more obvious choice and the difference in choices between the two algorithms decreases.  This convergence in thinking as the number of states grows is likely a function of the problem than the algorithms, however.  With more states, the likelihood of encountering a fire at some point rises.  Therefore, the safe choice (cut the wood) starts to become the more obvious better choice as the number of states in the problem increase.  
 
-```{r fig.width=3, fig.height=3,fig.show="hold", echo=FALSE, message=FALSE}
+```{r fig.width=5, fig.height=5,fig.show="hold", echo=FALSE, message=FALSE}
 library(png)
 library(grid)
 
@@ -74,9 +74,13 @@ Interestingly, in this MDP problem, the Policy Iteration took longer computing t
 
 
 #Reinforcement Learning
-The Q Learning algorithm is used for the Reinforcement Learning section of the assignment.  It is again taken from the R package MDPToolbox.  The Q Learning algorithm is compared for its choices as well as its final value function.  The plots below compare the three (Value Iteration, Policy Iteration and Q Learning).  The Q Learning algorithm actually converges to 1 as the states increase whereas the other two algorithms trend towards the second choice.
+The Q Learning algorithm is used for the Reinforcement Learning section of the assignment.  It is again taken from the R package MDPToolbox.  The Q Learning algorithm is compared for its choices as well as its final value function.  Since Q Learning is not afforded the model the MDP algorithms were, it will essentially trade learning time for a priori knowledge.    
 
-```{r fig.width=3, fig.height=3,fig.show="hold", echo=FALSE, message=FALSE}
+This Q Learning algorithm implementation itself is a greedy search algorithm.  The choice of actions is probabilistic with probability 1-(1/log(n+2)) where n is the iteration.  Therefore, similar to what was discussed in lecture, the chosen action is likely to lead to the highest utility of the previously discovered states at higher iterations.  At lower iterations it is more likely to explore actions it has not yet encountered.   Additionally, the learning rate of Q is (1/sqrt(n+2)).  Therefore, the learning rate too will decay as the number of iterations increase.    
+
+The plots below compare the three (Value Iteration, Policy Iteration and Q Learning).  The Q Learning algorithm actually converges to 1 as the states increase whereas the other two algorithms trend towards the second choice.
+
+```{r fig.width=5, fig.height=5,fig.show="hold", echo=FALSE, message=FALSE}
 library(png)
 library(grid)
 
